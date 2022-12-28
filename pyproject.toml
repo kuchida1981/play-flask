@@ -4,7 +4,7 @@ version = "0.1.0"
 description = "flask, sqlalchemy, mysql"
 authors = ["Kosuke Uchida <byebyeearthjpn@gmail.com>"]
 readme = "README.md"
-packages = [{include = "play_flask"}]
+packages = [{include = "app"}]
 
 [tool.poetry.dependencies]
 python = "^3.10"
