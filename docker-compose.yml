@@ -4,8 +4,6 @@ services:
   api:
     build: .
     command: gunicorn
-    ports:
-      - '15000:5000'
     volumes:
       - gunicorn_sock:/run/gunicorn/
       - ./:/work/
@@ -13,10 +11,17 @@ services:
     image: nginx:1.23
     depends_on:
       - api
+      - swaggerui
     volumes:
       - gunicorn_sock:/tmp/gunicorn/
-      - ./nginx-default.conf:/etc/nginx/conf.d/default.conf
+      - ./nginx-default.conf:/etc/nginx/conf.d/default.conf:ro
     ports:
       - '8080:80'
+  swaggerui:
+    image: swaggerapi/swagger-ui:v4.15.5
+    environment:
+      - URL=/docs/openapi.yaml
+    volumes:
+      - ./openapi.yaml:/usr/share/nginx/html/openapi.yaml
 volumes:
   gunicorn_sock:

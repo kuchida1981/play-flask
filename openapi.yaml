@@ -1,0 +1,41 @@
+openapi: 3.0.3
+info:
+  title: FlaskによるWeb API サンプル
+  description: |-
+    FlaskによるWeb API設計/実装の例.
+  termsOfService: 利用規約のURL
+  contact:
+    email: apiteam@swagger.io
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.11
+externalDocs:
+  description: Find out more about Swagger
+  url: http://swagger.io
+servers:
+  - url: http://192.168.57.15:8080
+
+paths:
+  /helloworld:
+    get:
+      summary: hello world
+      description: hello world
+      operationId: helloworld
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Helloworld'
+
+components:
+  schemas:
+    Helloworld:
+      type: object
+      properties:
+        message:
+          type: string
+          description: message
+          example: hello world
